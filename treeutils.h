@@ -1,5 +1,11 @@
 #define NULL 0
 #define clrscr() system("clear")
+
+extern unsigned long int ids;
+extern int ii;
+extern int ** arbol;
+extern int * numbersINO;
+
 using namespace std;
 
 /**********************************************TREES*******************************************/
@@ -20,11 +26,11 @@ void crear(treenodo * nodo)
 {
     char resp[1];
     int gc;
-    //nodo->dato=(char *)(malloc(40*sizeof(
     clrscr();
+    cout<<"IDs: "<<ids<<endl;
     cout<<"Entre el dato: ";
+    ids++;
     scanf("%d",&nodo->dato);
-    //ii++;
     gc=ffstdin();
     cout<<"Hay nodos a la Izquierda de ("<<nodo->dato << ") entre S/N: ";
     scanf("%s",resp);

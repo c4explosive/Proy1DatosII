@@ -1,6 +1,12 @@
 #include <GL/freeglut.h>
 #define NULL 0
 #define clrscr() system("clear")
+
+extern unsigned long int ids;
+extern int ii;
+extern int ** arbol;
+extern int * numbersINO;
+
 using namespace std;
 
 /***************************************************OPENGL**********************************************/

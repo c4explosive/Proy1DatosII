@@ -15,7 +15,8 @@ using namespace std;
 
 int * numbersINO;
 int ** arbol;
-int ii=0, ids=10;
+int ii=0;
+unsigned long int ids=10;
 
 
 int main(int argc, char ** argv)
