@@ -4,8 +4,10 @@
 
 extern unsigned long int ids;
 extern int ii;
+extern int iii;
 extern int ** arbol;
 extern int * numbersINO;
+extern int * numbersPRE;
 
 using namespace std;
 
@@ -26,46 +28,28 @@ void glucircle(GLfloat x, GLfloat y, GLfloat r)
 
 }
 
+
 void glutext()
 {
-    //text=(char *)malloc(50*sizeof(char));
     GLfloat ** arraysPOS,x=0,y=.85;
     int Pivot;
-    int leen,i,j;
+    int len=iii,i,j;
+    arraysutils au;
     glRasterPos3f(x, y,0);
-    leen=1;
-    arraysPOS=(GLfloat **)(malloc(leen*sizeof(GLfloat)));
+    au.imp_vect(numbersINO,5);
+    /*arraysPOS=(GLfloat **)(malloc(len*sizeof(GLfloat)));
     for(i=0;i<3;i++)
-	arraysPOS[i]=(GLfloat*)((malloc(3*sizeof(GLfloat))));
-    for(i=0;i<leen;i++)
-    {
-	if (i==0)
-	{
-    	    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,'A');
-	    y-=0.1;
-    	    glRasterPos3f(x-0.5, y,0);
-	}
-	else
-	    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,'A');
-    }
+	arraysPOS[i]=(GLfloat*)((malloc(3*sizeof(GLfloat))));*/
+    cout<<"LEN: "<< len<<endl;
 }
 
 void dspMe(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
     int i;
-    //glTranslatef(0.0f, 0.0f, 0.9f);
     GLfloat x=0.05, y=0.55 ,z=0.0, r=0.1,m=0,h=0;
     char *  buffer=(char *)malloc(50*sizeof(char));
     glutext();
-    /*for(i=1;i<10;i++)
-    {
-    	glucircle(0,0,r+m);
-    	glColor3f(0.0+h+m*3,0.1+h*2*h*m,0.2+h*m*m*m);
-	m+=0.1;
-	h+=0.2;
-    }*/
-    //glucircle(x+.5,y-.1,r);
     glFlush();
 }
 
