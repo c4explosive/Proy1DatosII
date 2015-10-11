@@ -5,7 +5,7 @@
 extern unsigned long int ids;
 extern int ii;
 extern int iii;
-extern int ** arbol;
+extern int ** nodel;
 extern int * numbersINO;
 extern int * numbersPRE;
 
@@ -28,17 +28,6 @@ void glucircle(GLfloat x, GLfloat y, GLfloat r)
 
 }
 
-void cpr( int elem)
-{
-    int i;
-    char * bff=(char *)(malloc(10*sizeof(char)));
-    sprintf(bff,"%d",elem);
-    if(elem>0)
-    {
-    	for(i=0;i<strlen(bff);i++)
-	    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,bff[i]);
-    }
-}
 
 
 int nnsub(int * arr)
@@ -52,18 +41,6 @@ int nnsub(int * arr)
     return nsub;
 }
 
-int ipi(int elem,int * sub)
-{
-    int i;
-    elem=numbersPRE[elem];
-    for(i=0;i<nnsub(sub);i++)
-    {
-	if(sub[i]==elem)
-	{
-	     return i;
-	}
-    }
-}
 
 void imp_sub(int root, int * izq_sub, int * der_sub)
 {
@@ -78,6 +55,19 @@ void imp_sub(int root, int * izq_sub, int * der_sub)
 
 }
 
+int ipi(int index,int * sub)
+{
+    int i,elem;
+    elem=numbersPRE[index];
+    for(i=0;i<nnsub(sub);i++)
+    {
+	if(sub[i]==elem)
+	{
+	     return i;
+	}
+    }
+}
+
 int * sub_i(int idroot, int * arr)
 {
     int * aux = (int *)(malloc(500*sizeof(int)));
@@ -88,7 +78,7 @@ int * sub_i(int idroot, int * arr)
     return aux;
 }
 
-int * sub_d(int idroot, int * arr) //TODO: DEBUGME PLEASE!!; wrong subtrees!!
+int * sub_d(int idroot, int * arr)
 {
     int * aux = (int *)(malloc(500*sizeof(int)));
     int i,j=0;
@@ -99,52 +89,65 @@ int * sub_d(int idroot, int * arr) //TODO: DEBUGME PLEASE!!; wrong subtrees!!
 	j++;
     }
     aux[j]=-1;
-    /*cout<<"ARR2: ";
-    cout<<"AUXNS: "<<nnsub(aux);
-    cout<<endl;*/
     return aux;
 }
 
-void imp_tree(GLfloat xi, GLfloat yi, int root, int * sub_R, int index)
+/*void imp_tree(GLfloat xi, GLfloat yi, int root, int * sub_R, int index)
 {
-    int i,ippi;
-    GLfloat xid,xii,yid,yii;
-    glRasterPos3f(xi, yi,0);
+    int i,ippi,root_i,root_d;
     int * izq_sub;
     int * der_sub;
+    GLfloat xid,xii,yid,yii;
+    glRasterPos3f(xi, yi,0);
     if(index < 10 && root != -1)
     {
 	cpr(root);
 	ippi=ipi(index,sub_R);//General case
-	izq_sub=sub_i(ippi,sub_R);
 	der_sub=sub_d(ippi,sub_R);
-	imp_sub(root,izq_sub,der_sub);
-    	index++;
-	xii=xi-0.1;
-	yii=yi-0.1;
-	imp_tree(xii,yii,izq_sub[ipi(index,izq_sub)],izq_sub,index); //Trabaja con el subárbol izquierdo
+	izq_sub=sub_i(ippi,sub_R);
+	//imp_sub(root,izq_sub,der_sub);
+    	//index++;
+	root_d=der_sub[ipi(index,der_sub)];
+	root_i=izq_sub[ipi(index,izq_sub)];
+	cout<<"INDEX: "<<index<<endl;
 	xid=xi+0.1;
 	yid=yi-0.1;
-	imp_tree(xid,yid,der_sub[ipi(index,der_sub)],der_sub,index); //Trabaja con el subárbol derecho
+	//imp_tree(xid,yid,root_d,sub_R,index);
+	imp_tree(xid,yid,root_d,der_sub,index); //Trabaja con el subárbol derecho
+	xii=xi-0.1;
+	imp_tree(xii,yid,root_i,izq_sub,index); //Trabaja con el subárbol izquierdo
+	//imp_tree(xii,yid,root_i,sub_R,index);
+    }
+}
+*/
+void cpr( int elem)
+{
+    int i;
+    char * bff=(char *)(malloc(10*sizeof(char)));
+    sprintf(bff,"%d",elem);
+    if(elem>0)
+    {
+    	for(i=0;i<strlen(bff);i++)
+	    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18,bff[i]);
     }
 }
 
 void glutext()
 {
     GLfloat ** arraysPOS,x=0,y=.85;
-    int Pivot;
     int len=10,i,j;
     int * sub_R=(int *)(malloc(500*sizeof(int)));
     for (i=0;i<len;i++)
 	sub_R[i]=numbersINO[i];
     sub_R[i]=-1;
     arraysutils au;
-    glRasterPos3f(x, y,0);
-    au.imp_vect(numbersINO,len);
+    au.imp_array(nodel,2,iii);
+    /*for(j=0;j<10;j++)
+    	imp_tree(x,y,numbersPRE[0],sub_R,j);*/
     /*arraysPOS=(GLfloat **)(malloc(len*sizeof(GLfloat)));
     for(i=0;i<3;i++)
 	arraysPOS[i]=(GLfloat*)((malloc(3*sizeof(GLfloat))));*/
-    imp_tree(x,y,numbersPRE[0],sub_R,0);
+
 }
 
 void dspMe(void)

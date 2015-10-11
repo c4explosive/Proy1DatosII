@@ -15,13 +15,13 @@ using namespace std;
 
 int * numbersINO;
 int * numbersPRE;
-int ** arbol;
-int ii=0,inn=0,iii=0;
+int ** nodel;
+int ii=0,inn=0,iii=0,il=0;
 
 
 int main(int argc, char ** argv)
 {
-    int i,iii=10;
+    int i;
     int nI[10]={7,5,3,10,6,9,2,1,4,8};
     int nP[10]={1,2,3,5,7,6,10,9,4,8};
     numbersINO=(int *)(malloc(100*sizeof(int)));
@@ -29,7 +29,7 @@ int main(int argc, char ** argv)
     arraysutils au;
     treenodo * nodo;
     nodo= new treenodo;
-    /*crear(nodo);
+    crear(nodo);
     cout<<"PREORDEN ";
     preorden(nodo);
     printf("\n");
@@ -39,14 +39,20 @@ int main(int argc, char ** argv)
     cout<<"POSTORDEN ";
     postorden(nodo);
     printf("\n");
-    cout<<"ELE: "<<iii<<endl;*/
-    for(i=0;i<iii;i++)
+    cout<<"TRANSVERSAL ";
+    transversal(nodo);
+    nodel=au.init_array(nodel,2,iii);
+    cout<<"PROFUNDIDAD "<<endl;
+    plo(nodo);
+    printf("\n");
+    //cout<<"ELE: "<<iii<<endl;
+    /*for(i=0;i<iii;i++)
     {
 	numbersINO[i]=nI[i];
 	numbersPRE[i]=nP[i];
     }
-    iii=10;
-    ////au.imp_vect(numbersINO,iii);
+    iii=10;*/
+    //au.imp_vect(numbersINO,iii);
     opgl_init(argc,argv);
     //getch();
     return 0;

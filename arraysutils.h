@@ -17,6 +17,13 @@ class arraysutils
 		cout<<endl;
 	     }
 	}
+	int ** init_array(int ** array,int n, int m)
+	{
+	    array=(int **)(malloc(n*sizeof(int *)));
+	    for(i=0;i<n;i++)
+		array[i]=(int *)(malloc(m*sizeof(int)));
+	    return array;
+	}
 	void imp_vect(int * vector, int n)
 	{
 	     for(i=0;i<n;i++)
