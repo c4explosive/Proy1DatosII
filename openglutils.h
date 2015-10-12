@@ -1,15 +1,25 @@
-#include <GL/freeglut.h>
 #define NULL 0
 #define clrscr() system("clear")
 
 extern unsigned long int ids;
 extern int ii;
+extern treenodo * genT;
+extern treenodo * as;
 extern int iii;
+extern int nl;
+extern int ik;
 extern int ** nodel;
 extern int * numbersINO;
 extern int * numbersPRE;
+extern int ** lsA;
 
 using namespace std;
+
+struct hijop
+{
+    int hI;
+    int hD;
+};
 
 /***************************************************OPENGL**********************************************/
 void glucircle(GLfloat x, GLfloat y, GLfloat r)
@@ -98,7 +108,6 @@ int * sub_d(int idroot, int * arr)
     int * izq_sub;
     int * der_sub;
     GLfloat xid,xii,yid,yii;
-    glRasterPos3f(xi, yi,0);
     if(index < 10 && root != -1)
     {
 	cpr(root);
@@ -132,16 +141,83 @@ void cpr( int elem)
     }
 }
 
+int bpl(int elem)
+{
+    int i;
+    for(i=0;i<iii;i++)
+    {
+	if(nodel[0][i]==elem)
+	    return nodel[1][i];
+    }
+}
+
+int bpp(int elem, GLfloat ** aPOS)
+{
+    int i;
+    for(i=0;i<iii;i++)
+    {
+	if(aPOS[0][i]==elem)
+	    return i;
+    }
+}
+
 void glutext()
 {
-    GLfloat ** arraysPOS,x=0,y=.85;
-    int len=10,i,j;
+    GLfloat ** arraysPOS,x=-0.4,y=.85;
+    int len=10,i,j, elem,bnn;
+    treenodo * asunder;
+    hijop * hijos =new hijop;
     int * sub_R=(int *)(malloc(500*sizeof(int)));
     for (i=0;i<len;i++)
 	sub_R[i]=numbersINO[i];
     sub_R[i]=-1;
     arraysutils au;
+    arraysPOS=au.init_array(arraysPOS,3,iii);
+    au.imp_vect(numbersINO,iii);
     au.imp_array(nodel,2,iii);
+    for(i=0;i<iii;i++)
+    {
+	y=.85;
+	elem=numbersINO[i];
+	x+=.1;
+	y-=bpl(elem)*0.2;
+	arraysPOS[0][i]=elem;
+	arraysPOS[1][i]=x;
+	arraysPOS[2][i]=y;
+    	glRasterPos3f(x,y,0);
+	cpr(elem);
+    }
+    au.imp_array(arraysPOS,3,iii);
+    for(i=0;i<iii;i++)
+    {
+	if(arraysPOS[0][i]<10)
+  	    glucircle(arraysPOS[1][i]+.02,arraysPOS[2][i]+.025,.05);
+	else
+	{
+	    //cout<<"ENTRA"<<endl;
+	    glucircle(arraysPOS[1][i]+.02*2,arraysPOS[2][i]+.025,.05);
+	}
+    }
+    glLineWidth(1.0);
+    au.imp_array(lsA,3,iii); 
+    for(i=0;i<iii;i++) //Izq_LINES
+    {
+	if(lsA[1][i]!=-1)
+	{
+	    glBegin(GL_LINES);
+	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)],arraysPOS[2][bpp(lsA[0][i],arraysPOS)]);
+	    glVertex2f(arraysPOS[1][bpp(lsA[1][i],arraysPOS)],arraysPOS[2][bpp(lsA[1][i],arraysPOS)]+.025);
+	    glEnd();
+	}
+	if(lsA[2][i]!=-1)
+	{
+	    glBegin(GL_LINES);
+	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)],arraysPOS[2][bpp(lsA[0][i],arraysPOS)]);
+	    glVertex2f(arraysPOS[1][bpp(lsA[2][i],arraysPOS)],arraysPOS[2][bpp(lsA[2][i],arraysPOS)]+.025);
+	    glEnd();
+	}
+    }
+
     /*for(j=0;j<10;j++)
     	imp_tree(x,y,numbersPRE[0],sub_R,j);*/
     /*arraysPOS=(GLfloat **)(malloc(len*sizeof(GLfloat)));

@@ -15,8 +15,10 @@ using namespace std;
 
 int * numbersINO;
 int * numbersPRE;
+int ** lsA;
 int ** nodel;
-int ii=0,inn=0,iii=0,il=0;
+treenodo * genT,* as;
+int ii=0,inn=0,iii=0,il=0,nl=0,ik=0;
 
 
 int main(int argc, char ** argv)
@@ -45,6 +47,10 @@ int main(int argc, char ** argv)
     cout<<"PROFUNDIDAD "<<endl;
     plo(nodo);
     printf("\n");
+    lsA=au.init_array(lsA,3,iii);
+    hojas(nodo);
+    genT=nodo;
+    rellenar(lsA);
     //cout<<"ELE: "<<iii<<endl;
     /*for(i=0;i<iii;i++)
     {

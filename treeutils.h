@@ -6,9 +6,14 @@ extern int ii;
 extern int inn;
 extern int iii;
 extern int il;
+extern int nl;
 extern int ** nodel;
 extern int * numbersINO;
 extern int * numbersPRE;
+extern int ** lsA;
+extern int ik;
+extern treenodo * genT;
+extern treenodo * as;
 
 using namespace std;
 
@@ -146,6 +151,115 @@ void plevel(treenodo * p, int level,int levnm)
 	plevel(p->izqptr, level-1,levnm);
 	plevel(p->derptr, level-1,levnm);
     }
+}
+
+void preorden_extract (treenodo * nodo, int elem)
+{
+    if(nodo != NULL)
+    {
+	//cout<<nodo->dato<<endl;
+	if(nodo->dato == elem)
+	{
+	   as=nodo;
+	}
+	preorden_extract(nodo->izqptr,elem);
+	preorden_extract(nodo->derptr,elem);
+	
+    }
+    
+}
+
+void hojas (treenodo *nodo)
+{
+    if(nodo->izqptr == NULL && nodo->derptr == NULL)
+    {
+	lsA[0][nl]=nodo->dato;
+	lsA[1][nl]=-1;
+	lsA[2][nl]=-1;
+	nl++;
+    }
+    else
+    {
+	if(nodo->izqptr != NULL)
+	{
+	    hojas(nodo->izqptr);
+	}
+	else
+	{
+	    lsA[0][nl]=nodo->dato;
+            lsA[1][nl]=-1;
+	    nl++;
+	}
+	if(nodo->derptr != NULL)
+	{
+	    hojas(nodo->derptr);
+	}
+	else
+	{
+	    lsA[0][nl]=nodo->dato;
+            lsA[2][nl]=-1;
+            nl++;
+	}
+    }
+}
+
+int dcero(int index)
+{
+    int i;
+    for(i=0;i<iii;i++)
+    {
+	if(lsA[index][i]==0)
+	    return i;
+    }
+    return -2;
+}
+
+int sta(int elem)
+{
+    int i;
+    for(i=0;i<iii;i++)
+    {
+	if(lsA[0][i]==elem)
+	    return 1;
+    }
+    return 0;
+}
+
+void rellenar(int ** lsA)
+{
+    int i,ps;
+    treenodo * asunder;
+    for(i=0;i<iii;i++)
+    {
+	ps=dcero(0);	
+	if(sta(numbersPRE[i])==0)
+	    lsA[0][ps]=numbersPRE[i];
+    } //Nodos que faltaban
+    ps=1;
+    do
+    {
+	ps=dcero(1);
+	cout<<"PS: "<<ps<<endl;
+	if(ps!=-2)
+	{
+	    preorden_extract(genT, lsA[0][ps]);
+	    asunder=as;
+	    lsA[1][ps]=asunder->izqptr->dato;
+	}
+    }while(ps!=-2);//Punteros izquierdos faltantes
+    ps=1;
+    do
+    {
+	ps=dcero(2);
+	cout<<"PS: "<<ps<<endl;
+	if(ps!=-2)
+	{
+	    preorden_extract(genT, lsA[0][ps]);
+	    asunder=as;
+	    lsA[2][ps]=asunder->derptr->dato;
+	}
+    }while(ps!=-2);//Punteros derechos faltantes
+
 }
 
 void plo(treenodo * root) //Le saca los nodos dependiendo del nivel
