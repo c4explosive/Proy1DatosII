@@ -205,15 +205,15 @@ void glutext()
 	if(lsA[1][i]!=-1)
 	{
 	    glBegin(GL_LINES);
-	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)],arraysPOS[2][bpp(lsA[0][i],arraysPOS)]);
-	    glVertex2f(arraysPOS[1][bpp(lsA[1][i],arraysPOS)],arraysPOS[2][bpp(lsA[1][i],arraysPOS)]+.025);
+	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)]+.02,arraysPOS[2][bpp(lsA[0][i],arraysPOS)]-.02);
+	    glVertex2f(arraysPOS[1][bpp(lsA[1][i],arraysPOS)],arraysPOS[2][bpp(lsA[1][i],arraysPOS)]+.07);
 	    glEnd();
 	}
 	if(lsA[2][i]!=-1)
 	{
 	    glBegin(GL_LINES);
-	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)],arraysPOS[2][bpp(lsA[0][i],arraysPOS)]);
-	    glVertex2f(arraysPOS[1][bpp(lsA[2][i],arraysPOS)],arraysPOS[2][bpp(lsA[2][i],arraysPOS)]+.025);
+	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)]+.02,arraysPOS[2][bpp(lsA[0][i],arraysPOS)]-.02);
+	    glVertex2f(arraysPOS[1][bpp(lsA[2][i],arraysPOS)],arraysPOS[2][bpp(lsA[2][i],arraysPOS)]+.07);
 	    glEnd();
 	}
     }

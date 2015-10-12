@@ -42,7 +42,13 @@ class arraysutils
 		array[i]=(GLfloat *)(malloc(m*sizeof(GLfloat)));
 	    return array;
 	}
-
+	int ** array_clear(int ** array, int n, int m)
+	{
+	     for(i=0;i<n;i++)
+		for(j=0;j<m;j++)
+		    array[i][j]=0;
+	     return array;
+	}
 	void imp_vect(int * vector, int n)
 	{
 	     for(i=0;i<n;i++)
