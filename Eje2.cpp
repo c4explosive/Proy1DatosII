@@ -1,44 +1,48 @@
 #include <stdio.h>
+#include <iostream>
+#include <string.h>
 #include <stdlib.h>
+#include "arraysutils.h"
+#include "treeutils.h"
 
-struct nodoArbol
-{
-	struct nodoArbol *ptrIzq;
-	int dato;
-	struct nodoArbol *ptrDer;	
-};
+using namespace std;
 
-typedef struct nodoArbol NodoArbol;
-typedef NodoArbol *ptrNodoArbol;
+int * numbersINO;
+int * numbersPRE;
+int ** lsA;
+int ** nodel;
+treenodo * genT,* as;
+int ii=0,inn=0,iii=0,il=0,nl=0,ik=0;
 
 
-void insertaNodo( ptrNodoArbol *ptrArbol, int valor);
-void inOrden( ptrNodoArbol ptrArbol );
+
+void insertaNodo( treenodo *ptrArbol, int valor);
+//void inOrden( treenodo ptrArbol );
+
 
 int main()
 {
 	int i; 
 	int elemento;
-	ptrNodoArbol ptrRaiz=(ptrNodoArbol )malloc(sizeof(ptrNodoArbol));
-	ptrRaiz = NULL;	
+	treenodo * ptrRaiz=new treenodo;
 	printf("INGRESE UN VALOR ENTERO\n");
 	for(i=0;i<5;i++)
 	{
 		scanf("%d", &elemento);
-		insertaNodo( &ptrRaiz, elemento );
+		insertaNodo(ptrRaiz, elemento );
 	}
 	
 }
 
-void insertaNodo( ptrNodoArbol *ptrArbol, int valor )
+void insertaNodo( treenodo * ptrArbol, int valor )
 {
-	if ( *ptrArbol == NULL )
+	if ( ptrArbol == NULL )
 	{
-		if ( *ptrArbol != NULL )
+		if ( ptrArbol != NULL )
 		{
-			( *ptrArbol )->dato = valor;
-			( *ptrArbol )->ptrIzq = NULL;
-			( *ptrArbol )->ptrDer = NULL;
+			ptrArbol->dato = valor;
+			ptrArbol->izqptr = NULL;
+			ptrArbol->derptr = NULL;
 		}
 		else
 		{
@@ -47,13 +51,13 @@ void insertaNodo( ptrNodoArbol *ptrArbol, int valor )
 	}
 	else
 	{
-		if ( valor < ( *ptrArbol )->dato )
+		if ( valor <  ptrArbol->dato )
 		{
-			insertaNodo( &( ( *ptrArbol )->ptrIzq ), valor );
+			insertaNodo(ptrArbol->izqptr, valor );
 		}
-		else if( valor > ( *ptrArbol )->dato )
+		else if( valor > ptrArbol->dato )
 		{
-			insertaNodo( &( ( *ptrArbol )->ptrDer ), valor );
+			insertaNodo( ptrArbol->derptr, valor );
 		}
 		else
 		{
@@ -63,7 +67,7 @@ void insertaNodo( ptrNodoArbol *ptrArbol, int valor )
 		
 }
 
-void inOrden( ptrNodoArbol ptrArbol )
+/*void inOrden( treenodo ptrArbol )
 {
 	if ( ptrArbol != NULL )
 	{
@@ -72,4 +76,4 @@ void inOrden( ptrNodoArbol ptrArbol )
 		inOrden( ptrArbol->ptrDer );
 	}
 	
-}
+}*/
