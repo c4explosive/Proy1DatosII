@@ -1,6 +1,12 @@
-#include "queue.h"
 #define NULL 0
 #define clrscr() system("clear")
+
+struct treenodo
+{
+    struct treenodo * izqptr;
+    int dato;
+    struct treenodo * derptr;
+};
 
 extern int ii;
 extern int inn;
@@ -17,20 +23,12 @@ extern treenodo * as;
 
 using namespace std;
 
-/**********************************************TREES*******************************************/
-/*struct treenodo
-{
-    struct treenodo * izqptr;
-    int dato;
-    struct treenodo * derptr;
-};*/
-
-
 int ffstdin()
 {
    int gc;
    while((gc=fgetc(stdin)) != EOF && gc != '\n'){}
 }
+
 void crear(treenodo * nodo)
 {
     char resp[1];
@@ -103,71 +101,6 @@ void inorden(treenodo * nodo)
     }
 }
 
-void transversal(treenodo *tr)
-{
-    queue *cola;
-    treenodo * aux;
-    int i=0;
-    int nICL=1;
-    int nINL=0;
-    if(tr!=NULL)
-    {
-	create(&cola);
-	encolar(&cola,tr);
-	while(i<iii)
-	{
-	    desencolar(&cola,&aux);
-  	    cout<<aux->dato<<" ";
-	    if(aux->izqptr != NULL)
-		encolar(&cola,aux->izqptr);
-	    if(aux->derptr != NULL)
-		encolar(&cola,aux->derptr);
-	    i++;
-	}
-    }
-    cout<<endl;
-}
-
-int maxH(treenodo * p)
-{
-    if(!p) return 0;
-    int lefth=maxH(p->izqptr);
-    int righth=maxH(p->derptr);
-    return (lefth > righth) ? lefth + 1 : righth +1;
-}
-
-void plevel(treenodo * p, int level,int levnm)
-{
-    if(!p) return;
-    if(level ==1)
-    {
-	cout<<p->dato<<" ";
-	nodel[0][il]=p->dato;
-	nodel[1][il]=levnm;
-	il++;
-    }
-    else
-    {
-	plevel(p->izqptr, level-1,levnm);
-	plevel(p->derptr, level-1,levnm);
-    }
-}
-
-void preorden_extract (treenodo * nodo, int elem)
-{
-    if(nodo != NULL)
-    {
-	//cout<<nodo->dato<<endl;
-	if(nodo->dato == elem)
-	{
-	   as=nodo;
-	}
-	preorden_extract(nodo->izqptr,elem);
-	preorden_extract(nodo->derptr,elem);
-	
-    }
-    
-}
 
 void hojas (treenodo *nodo)
 {
@@ -225,6 +158,22 @@ int sta(int elem)
     return 0;
 }
 
+void preorden_extract (treenodo * nodo, int elem)
+{
+    if(nodo != NULL)
+    {
+	if(nodo->dato == elem)
+	{
+	   as=nodo;
+	}
+	preorden_extract(nodo->izqptr,elem);
+	preorden_extract(nodo->derptr,elem);
+	
+    }
+    
+}
+
+
 void rellenar(int ** lsA)
 {
     int i,ps;
@@ -261,6 +210,32 @@ void rellenar(int ** lsA)
     }while(ps!=-2);//Punteros derechos faltantes
 
 }
+
+int maxH(treenodo * p)
+{
+    if(!p) return 0;
+    int lefth=maxH(p->izqptr);
+    int righth=maxH(p->derptr);
+    return (lefth > righth) ? lefth + 1 : righth +1;
+}
+
+void plevel(treenodo * p, int level,int levnm)
+{
+    if(!p) return;
+    if(level ==1)
+    {
+	cout<<p->dato<<" ";
+	nodel[0][il]=p->dato;
+	nodel[1][il]=levnm;
+	il++;
+    }
+    else
+    {
+	plevel(p->izqptr, level-1,levnm);
+	plevel(p->derptr, level-1,levnm);
+    }
+}
+
 
 void plo(treenodo * root) //Le saca los nodos dependiendo del nivel
 {

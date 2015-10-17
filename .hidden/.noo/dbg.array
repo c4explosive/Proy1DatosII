@@ -1,0 +1,8 @@
+cout<<"***********************************************"<<endl;
+        cout<<"ROOT: "<<root<<endl;
+        cout<<"IZQ: "<<endl;
+        au.imp_vect(izq_sub,nnsub(izq_sub));
+        cout<<"DER: "<<endl;
+        au.imp_vect(der_sub,nnsub(der_sub)); //TODO: Corregir los subárboles derechos, tiran sorpresas!!
+        cout<<"***********************************************"<<endl;
+

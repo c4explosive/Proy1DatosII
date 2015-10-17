@@ -9,7 +9,6 @@
 #include "openglutils.h"
 #define NULL 0
 #define clrscr() system("clear")
-//#define getch() system("read a")
 
 using namespace std;
 
@@ -42,8 +41,6 @@ int main(int argc, char ** argv)
     cout<<"POSTORDEN ";
     postorden(nodo);
     printf("\n");
-    /*cout<<"TRANSVERSAL ";
-    transversal(nodo);*/
     nodel=au.init_array(nodel,2,iii);
     nodel=au.array_clear(nodel,2,iii);
     cout<<"PROFUNDIDAD "<<endl;
