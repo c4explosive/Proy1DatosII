@@ -19,12 +19,12 @@ int main()
 {
 	int i; 
 	int elemento;
-	ptrNodoArbol ptrRaiz = NULL;
-	
+	ptrNodoArbol ptrRaiz=(ptrNodoArbol )malloc(sizeof(ptrNodoArbol));
+	ptrRaiz = NULL;	
 	printf("INGRESE UN VALOR ENTERO\n");
 	for(i=0;i<5;i++)
 	{
-		scanf("%d", elemento);
+		scanf("%d", &elemento);
 		insertaNodo( &ptrRaiz, elemento );
 	}
 	
@@ -34,7 +34,6 @@ void insertaNodo( ptrNodoArbol *ptrArbol, int valor )
 {
 	if ( *ptrArbol == NULL )
 	{
-		//*ptrArbol = malloc( sizeof( NodoArbol ) );
 		if ( *ptrArbol != NULL )
 		{
 			( *ptrArbol )->dato = valor;
