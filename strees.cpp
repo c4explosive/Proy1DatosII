@@ -62,7 +62,7 @@ void inss(treenodo *& nodo)
 
 int main(int argc, char ** argv)
 {
-    int i,k,cont=1;
+    int i,k,cont=1,elem;
     char op='\0';
     treenodo * nodo;
     nodo= NULL;
@@ -82,10 +82,18 @@ int main(int argc, char ** argv)
 	}
 	
     }while(cont);
-    cout<<"DIRR: "<<nodo<<endl;
-    cout<<"DATA: "<<nodo->dato<<endl;
-    cout<<endl;
-        //getch();
+    cout<<"Eliminar: ";
+    cin>>elem;
+    deleteABB(nodo,elem);
+    if(nodo !=NULL)
+    {
+    	initz(nodo);
+    	opgl_init(argc,argv);
+    	cout<<"DIRR: "<<nodo<<endl;
+    	cout<<"DATA: "<<nodo->dato<<endl;
+    	cout<<endl;
+    }
+    //getch();
     return 0;
 }
 

@@ -101,6 +101,39 @@ void insABB( treenodo *& nodo, int elem )
 		
 }
 
+void replace(treenodo *& ar, treenodo *& aux)
+{
+    if(ar->derptr !=NULL)
+	replace(ar->derptr,aux);
+    else
+    {
+	aux->dato=ar->dato;
+	aux=ar;
+	ar=ar->izqptr;
+    }
+}
+
+void deleteABB(treenodo *& ar, int elem)
+{
+    treenodo * aux;
+    if(ar == NULL)
+	return;
+    if(ar->dato < elem)
+	deleteABB(ar->derptr,elem);
+    else if (ar->dato > elem)
+	deleteABB(ar->izqptr, elem);
+    else if(ar->dato==elem)
+    {
+	aux=ar;
+	if(ar->izqptr==NULL)
+	    ar=ar->derptr;
+	else if(ar->derptr == NULL)
+	    ar=ar->izqptr;
+	else
+	    replace(ar->izqptr,aux);
+	free(aux);
+    }
+}
 
 void preorden (treenodo * nodo)
 {
