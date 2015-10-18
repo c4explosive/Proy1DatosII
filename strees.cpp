@@ -54,7 +54,7 @@ void inss(treenodo *& nodo)
     scanf("%d", &elemento);
     if(elemento == 0)
 	elemento=1;
-    insertaNodo(nodo, abs(elemento) );
+    insABB(nodo, abs(elemento) );
     cout<<"INORDEN: "<<endl;
     inorden(nodo);
 }

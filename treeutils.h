@@ -64,40 +64,40 @@ void crear(treenodo * nodo)
     }
 }
 
-void insertaNodo( treenodo *& ptrArbol, int valor )
+void insABB( treenodo *& nodo, int elem )
 {
-	if ( ptrArbol == NULL )
+    if ( nodo == NULL )
+    {
+	nodo=new treenodo;
+	cout<<"DIRT: "<<nodo<<endl;
+	if ( nodo != NULL )
 	{
-		ptrArbol=new treenodo;
-		cout<<"DIRT: "<<ptrArbol<<endl;
-		if ( ptrArbol != NULL )
-		{
-		   	//cout<<"DATO: "<<ptrArbol->dato<<endl;
-			cout<<"DIRT: "<<ptrArbol<<endl;
-			ptrArbol->dato = valor;
-			ptrArbol->izqptr = NULL;
-			ptrArbol->derptr = NULL;
-		}
-		else
-		{
-			printf( "no se inserto %d. No hay memoria disponible.\n", valor );		
-		}
+	    //cout<<"DATO: "<<ptrArbol->dato<<endl;
+	    cout<<"DIRT: "<<nodo<<endl;
+	    nodo->dato = elem;
+	    nodo->izqptr = NULL;
+	    nodo->derptr = NULL;
 	}
 	else
 	{
-		if ( valor <  ptrArbol->dato )
-		{
-			insertaNodo(ptrArbol->izqptr, valor );
-		}
-		else if( valor > ptrArbol->dato )
-		{
-			insertaNodo( ptrArbol->derptr, valor );
-		}
-		else
-		{
-			printf( "dup" );
-		}
+	    printf( "no se inserto %d. No hay memoria disponible.\n", elem );		
 	}
+    }
+    else
+    {
+	if ( elem <  nodo->dato )
+	{
+	    insABB(nodo->izqptr, elem );
+	}
+	else if( elem > nodo->dato )
+	{
+	    insABB( nodo->derptr, elem );
+	}
+	else
+	{
+	    printf( "Duplicado" );
+	}
+    }
 		
 }
 
