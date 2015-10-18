@@ -64,6 +64,44 @@ void crear(treenodo * nodo)
     }
 }
 
+void insertaNodo( treenodo *& ptrArbol, int valor )
+{
+	if ( ptrArbol == NULL )
+	{
+		ptrArbol=new treenodo;
+		cout<<"DIRT: "<<ptrArbol<<endl;
+		if ( ptrArbol != NULL )
+		{
+		   	//cout<<"DATO: "<<ptrArbol->dato<<endl;
+			cout<<"DIRT: "<<ptrArbol<<endl;
+			ptrArbol->dato = valor;
+			ptrArbol->izqptr = NULL;
+			ptrArbol->derptr = NULL;
+		}
+		else
+		{
+			printf( "no se inserto %d. No hay memoria disponible.\n", valor );		
+		}
+	}
+	else
+	{
+		if ( valor <  ptrArbol->dato )
+		{
+			insertaNodo(ptrArbol->izqptr, valor );
+		}
+		else if( valor > ptrArbol->dato )
+		{
+			insertaNodo( ptrArbol->derptr, valor );
+		}
+		else
+		{
+			printf( "dup" );
+		}
+	}
+		
+}
+
+
 void preorden (treenodo * nodo)
 {
     char * buffer=(char *)malloc(80*sizeof(char));
