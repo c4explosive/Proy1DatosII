@@ -12,6 +12,7 @@ extern int ** nodel;
 extern int * numbersINO;
 extern int * numbersPRE;
 extern int ** lsA;
+int veces=0;
 
 using namespace std;
 
@@ -72,13 +73,13 @@ GLfloat randG()
 void impg_elem(GLfloat ** arraysPOS)
 {
     int len=10,i,j, elem,bnn;
-    GLfloat x=-0.4,y=.85;
+    GLfloat x=-0.7,y=.85; //-0.7 is for more space
     for(i=0;i<iii;i++) //Imp_elem Save Position
     {
-	y=.85;
+	y=1.15;
 	elem=numbersINO[i];
-	x+=.1;
-	y-=bpl(elem)*0.2;
+	x+=.12;
+	y-=bpl(elem)*0.3;
 	arraysPOS[0][i]=elem;
 	arraysPOS[1][i]=x;
 	arraysPOS[2][i]=y;
@@ -91,15 +92,16 @@ void impg_elem(GLfloat ** arraysPOS)
 void NG_circles(GLfloat ** arraysPOS)
 {
     int len=10,i,j, elem,bnn;
+    GLfloat rad=.08;
     for(i=0;i<iii;i++) //N_Circles
     {
         glColor3f(randG(),randG(),randG());
 	if(arraysPOS[0][i]<10)
-  	    glucircle(arraysPOS[1][i]+.02,arraysPOS[2][i]+.025,.05);
+  	    glucircle(arraysPOS[1][i]+.02,arraysPOS[2][i]+(rad/2)-.01,rad);
+	else if (arraysPOS[0][i]>=10 && arraysPOS[0][i]<100)
+	    glucircle(arraysPOS[1][i]+.02*2,arraysPOS[2][i]+(rad/2)-.01,rad);
 	else
-	{
-	    glucircle(arraysPOS[1][i]+.02*2,arraysPOS[2][i]+.025,.05);
-	}
+	    glucircle(arraysPOS[1][i]+.03*2,arraysPOS[2][i]+(rad/2)-.01,rad);
     }
 
 
@@ -108,21 +110,22 @@ void NG_circles(GLfloat ** arraysPOS)
 void LineasG(GLfloat ** arraysPOS)
 {
     int len=10,i,j, elem,bnn;
+    glColor3f(1.0f,1.0f,1.0f);
     glLineWidth(1.0);
     for(i=0;i<iii;i++)  
     {
 	if(lsA[1][i]!=-1) //Izq_Lines
 	{
 	    glBegin(GL_LINES);
-	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)]+.02,arraysPOS[2][bpp(lsA[0][i],arraysPOS)]-.02);
-	    glVertex2f(arraysPOS[1][bpp(lsA[1][i],arraysPOS)],arraysPOS[2][bpp(lsA[1][i],arraysPOS)]+.07);
+	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)]+.02,arraysPOS[2][bpp(lsA[0][i],arraysPOS)]-.05);
+	    glVertex2f(arraysPOS[1][bpp(lsA[1][i],arraysPOS)],arraysPOS[2][bpp(lsA[1][i],arraysPOS)]+.10);
 	    glEnd();
 	}
 	if(lsA[2][i]!=-1) //Der_Lines
 	{
 	    glBegin(GL_LINES);
-	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)]+.02,arraysPOS[2][bpp(lsA[0][i],arraysPOS)]-.02);
-	    glVertex2f(arraysPOS[1][bpp(lsA[2][i],arraysPOS)],arraysPOS[2][bpp(lsA[2][i],arraysPOS)]+.07);
+	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)]+.02,arraysPOS[2][bpp(lsA[0][i],arraysPOS)]-.05);
+	    glVertex2f(arraysPOS[1][bpp(lsA[2][i],arraysPOS)],arraysPOS[2][bpp(lsA[2][i],arraysPOS)]+.10);
 	    glEnd();
 	}
     }
@@ -144,9 +147,6 @@ void glutGR()
 void dspMe(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    int i;
-    GLfloat x=0.05, y=0.55 ,z=0.0, r=0.1,m=0,h=0;
-    char *  buffer=(char *)malloc(50*sizeof(char));
     glutGR();
     glFlush();
 }

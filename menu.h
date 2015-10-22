@@ -1,3 +1,7 @@
+void inss(treenodo *&);
+void crearr(treenodo *&);
+void elimm(treenodo *&);
+void impp(treenodo *&, int argc, char **argv);
  void presentacion ()
 {
  
@@ -7,8 +11,8 @@
  printf("\n\n\t\t              ESTRUCTURA DE DATOS II");
  printf("\n\t\t                 PROYECTO No. 1");
  printf("\n\t\t            ARBOL BINARIO DE BUSQUEDA");
- printf("\n\n1\t\tFACILITADORA:");
- printf("\n\n1\t\t              ING. YOLANDA DE MIGUELENA");
+ printf("\n\n\t\tFACILITADORA:");
+ printf("\n\n\t\t              ING. YOLANDA DE MIGUELENA");
  printf("\n\n\t\tINTEGRANTES:");
  printf("\n\n\t\t            ESPINOSA, ANGEL     8-905-1352");
  printf("\n\t\t            GONZALEZ, YORLENIS  9-749-2051");
@@ -18,7 +22,7 @@
  
 }
 
-void menu()
+void menu(treenodo *& nodo, int argc, char ** argv)
 {
      int opm=0;
      do
@@ -33,44 +37,49 @@ void menu()
   printf("\n\t\t6. SALIR");
 
   printf("\n\n\tIntroduzca la opci¢n de su preferencia  ");
-  scanf("%d", &opm);
-  system("cls");
+  cin>>opm;
+  //scanf("%d", &opm);
+  clrscr();
      switch(opm)
      {
       case 1 : presentacion();
-               system("\n pause");
-	           system("cls");
+               getch();
+	           clrscr();
 	       break;
 
       case 2 : 
                //AQUI VA LA CREACION DEL ARBOL
-               system("\n pause");
-	           system("cls");
+	       crearr(nodo);
+               getch();
+	       clrscr();
 			 break;
       case 3 :
                //ADICION O INSERCION DE NODOS
-               system("\n pause");
-	           system("cls");
+               inss(nodo);
+               //getch();
+	           clrscr();
 			 break;
       case 4 : 
                //ELIMINAR NODOS
-               system("\n pause");
-	           system("cls");
+               elimm(nodo);
+               getch();
+	           clrscr();
 			 break;
       case 5 : 
                //IMPRIMIR ARBOL ABB
-               system("\n pause");
-	           system("cls");
+               impp(nodo,argc,argv);
+               //getch();
+	           clrscr();
 			 break;
 
       case 6 : printf("\n\n\tQUE TENGA UN BUEN DIA\n");
-               system("pause");
-	           system("cls");
+               getch();
+	           clrscr();
 	       break;
 
       default: printf("\n\n\n\n\tLA OPCION INGRESADA NO ESTA CONTEMPLADA. INGRESE 1, 2 ¢ 3\r\n");
-	   system("pause");
-	   system("cls");
+	   getch();
+	   clrscr();
 	   break;
      }
      

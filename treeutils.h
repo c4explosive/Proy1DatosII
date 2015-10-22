@@ -69,11 +69,9 @@ void insABB( treenodo *& nodo, int elem )
     if ( nodo == NULL )
     {
 	nodo=new treenodo;
-	cout<<"DIRT: "<<nodo<<endl;
 	if ( nodo != NULL )
 	{
 	    //cout<<"DATO: "<<ptrArbol->dato<<endl;
-	    cout<<"DIRT: "<<nodo<<endl;
 	    nodo->dato = elem;
 	    nodo->izqptr = NULL;
 	    nodo->derptr = NULL;
@@ -140,7 +138,7 @@ void preorden (treenodo * nodo)
     char * buffer=(char *)malloc(80*sizeof(char));
     if(nodo != NULL)
     {
-	printf("%d ",nodo->dato);
+	//printf("%d ",nodo->dato);
 	numbersPRE[ii]=nodo->dato;
 	ii++;
 	preorden(nodo->izqptr);
@@ -154,9 +152,21 @@ void postorden(treenodo * nodo)
     {
 	postorden(nodo->izqptr);
 	postorden(nodo->derptr);
-	printf("%d ",nodo->dato);
+	//printf("%d ",nodo->dato);
     }
 }
+
+void inordenmpp(treenodo * nodo)
+{
+    char * buffer=(char *)malloc(80*sizeof(char));
+    if(nodo != NULL)
+    {
+	inordenmpp(nodo->izqptr);
+	printf("%d ",nodo->dato);
+	inordenmpp(nodo->derptr);
+    }
+}
+
 
 void inorden(treenodo * nodo)
 {
@@ -164,7 +174,7 @@ void inorden(treenodo * nodo)
     if(nodo != NULL)
     {
 	inorden(nodo->izqptr);
-	printf("%d ",nodo->dato);
+	//printf("%d ",nodo->dato);
 	numbersINO[inn]=nodo->dato;
 	inn++;
 	iii++;
@@ -259,7 +269,7 @@ void rellenar(int ** lsA)
     do
     {
 	ps=dcero(1);
-	cout<<"PS: "<<ps<<endl;
+	//cout<<"PS: "<<ps<<endl;
 	if(ps!=-2)
 	{
 	    preorden_extract(genT, lsA[0][ps]);
@@ -271,7 +281,7 @@ void rellenar(int ** lsA)
     do
     {
 	ps=dcero(2);
-	cout<<"PS: "<<ps<<endl;
+	//cout<<"PS: "<<ps<<endl;
 	if(ps!=-2)
 	{
 	    preorden_extract(genT, lsA[0][ps]);
@@ -295,7 +305,7 @@ void plevel(treenodo * p, int level,int levnm)
     if(!p) return;
     if(level ==1)
     {
-	cout<<p->dato<<" ";
+	//cout<<p->dato<<" ";
 	nodel[0][il]=p->dato;
 	nodel[1][il]=levnm;
 	il++;
@@ -315,8 +325,7 @@ void plo(treenodo * root) //Le saca los nodos dependiendo del nivel
     for(level =1; level <=height; level++)
     {
 	plevel(root,level,level);
-	cout<<"LEVEL: "<<level;
-	cout<<endl;
+	//cout<<"LEVEL: "<<level;
     }   
 }
 /******************************************TREEs***********************************************/

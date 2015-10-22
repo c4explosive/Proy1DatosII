@@ -17,7 +17,6 @@ int ii=0,inn=0,iii=0,il=0,nl=0,ik=0;
 
 
 void insertaNodo( treenodo *ptrArbol, int valor);
-//void inOrden( treenodo ptrArbol );
 
 
 int main()
@@ -67,13 +66,3 @@ void insertaNodo( treenodo * ptrArbol, int valor )
 		
 }
 
-/*void inOrden( treenodo ptrArbol )
-{
-	if ( ptrArbol != NULL )
-	{
-		inOrden( ptrArbol->ptrIzq );
-		printf( "%3d", ptrArbol->dato );
-		inOrden( ptrArbol->ptrDer );
-	}
-	
-}*/

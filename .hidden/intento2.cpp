@@ -1,7 +1,7 @@
 #include<stdio.h>
-#include<conio.h>
+#include <stdlib.h>
 #include<iostream>
-#include<windows.h>
+
 
 
 struct _nuevo
@@ -14,7 +14,7 @@ struct _nuevo
 	
 struct ta *elemento;
 struct ta *arb;
-
+/*
 void agregar(struct ta *nuevo, int num)
 {
 	elemento padre = NULL;
@@ -49,7 +49,7 @@ int inorden (ta *arbol)
    inorden(arbol->subde);
  }return 0;
 }
-
+*/
 int main()
 {
 	
@@ -63,9 +63,9 @@ int main()
 	{
 		printf("INTRODUZCA UN VALOR ENTERO: \n");
 		scanf("%d", &n);
-		agregar(arb, n);
+		//agregar(arb, n);
 	}
 	
-	inorden(arbol);
+	//inorden(arbol);
 	
 }
