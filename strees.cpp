@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdio.h>
-#include <graphics.h>
+//#include <graphics.h>
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
@@ -85,6 +85,7 @@ int main(int argc, char ** argv)
     cout<<"Eliminar: ";
     cin>>elem;
     deleteABB(nodo,elem);
+    
     if(nodo !=NULL)
     {
     	initz(nodo);

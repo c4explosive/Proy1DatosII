@@ -64,20 +64,11 @@ int bpp(int elem, GLfloat ** aPOS)
     }
 }
 
-void glutext()
+void impg_elem(GLfloat ** arraysPOS)
 {
-    GLfloat ** arraysPOS,x=-0.4,y=.85;
     int len=10,i,j, elem,bnn;
-    treenodo * asunder;
-    int * sub_R=(int *)(malloc(500*sizeof(int)));
-    for (i=0;i<len;i++)
-	sub_R[i]=numbersINO[i];
-    sub_R[i]=-1;
-    arraysutils au;
-    arraysPOS=au.init_array(arraysPOS,3,iii);
-    au.imp_vect(numbersINO,iii);
-    au.imp_array(nodel,2,iii);
-    for(i=0;i<iii;i++)
+    GLfloat x=-0.4,y=.85;
+    for(i=0;i<iii;i++) //Imp_elem Save Position
     {
 	y=.85;
 	elem=numbersINO[i];
@@ -89,29 +80,39 @@ void glutext()
     	glRasterPos3f(x,y,0);
 	cpr(elem);
     }
-    au.imp_array(arraysPOS,3,iii);
-    for(i=0;i<iii;i++)
+
+}
+
+void NG_circles(GLfloat ** arraysPOS)
+{
+    int len=10,i,j, elem,bnn;
+    for(i=0;i<iii;i++) //N_Circles
     {
 	if(arraysPOS[0][i]<10)
   	    glucircle(arraysPOS[1][i]+.02,arraysPOS[2][i]+.025,.05);
 	else
 	{
-	    //cout<<"ENTRA"<<endl;
 	    glucircle(arraysPOS[1][i]+.02*2,arraysPOS[2][i]+.025,.05);
 	}
     }
+
+
+}
+
+void LineasG(GLfloat ** arraysPOS)
+{
+    int len=10,i,j, elem,bnn;
     glLineWidth(1.0);
-    au.imp_array(lsA,3,iii); 
-    for(i=0;i<iii;i++) //Izq_LINES
+    for(i=0;i<iii;i++)  
     {
-	if(lsA[1][i]!=-1)
+	if(lsA[1][i]!=-1) //Izq_Lines
 	{
 	    glBegin(GL_LINES);
 	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)]+.02,arraysPOS[2][bpp(lsA[0][i],arraysPOS)]-.02);
 	    glVertex2f(arraysPOS[1][bpp(lsA[1][i],arraysPOS)],arraysPOS[2][bpp(lsA[1][i],arraysPOS)]+.07);
 	    glEnd();
 	}
-	if(lsA[2][i]!=-1)
+	if(lsA[2][i]!=-1) //Der_Lines
 	{
 	    glBegin(GL_LINES);
 	    glVertex2f(arraysPOS[1][bpp(lsA[0][i],arraysPOS)]+.02,arraysPOS[2][bpp(lsA[0][i],arraysPOS)]-.02);
@@ -120,6 +121,17 @@ void glutext()
 	}
     }
 
+}
+
+void glutGR()
+{
+    GLfloat ** arraysPOS,x=-0.4,y=.85;
+    int len=10,i,j, elem,bnn;
+    arraysutils au;
+    arraysPOS=au.init_array(arraysPOS,3,iii);
+    impg_elem(arraysPOS);
+    NG_circles(arraysPOS);
+    LineasG(arraysPOS);
 
 }
 
@@ -129,7 +141,7 @@ void dspMe(void)
     int i;
     GLfloat x=0.05, y=0.55 ,z=0.0, r=0.1,m=0,h=0;
     char *  buffer=(char *)malloc(50*sizeof(char));
-    glutext();
+    glutGR();
     glFlush();
 }
 
@@ -139,7 +151,7 @@ void opgl_init(int argc, char ** argv)
     glutInitDisplayMode(GLUT_RGBA | GLUT_DEPTH);
     glutInitWindowSize(500,500);
     glutInitWindowPosition(400,100); 
-    glutCreateWindow("Hello Trees!!");
+    glutCreateWindow("Arbol ABB");
     glEnable(GL_BLEND);
     glutSetOption(GLUT_ACTION_ON_WINDOW_CLOSE,GLUT_ACTION_CONTINUE_EXECUTION);
     glutDisplayFunc(dspMe);
