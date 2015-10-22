@@ -1,8 +1,8 @@
 #include <iostream>
 #include <stdio.h>
-//#include <graphics.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include <math.h>
 #include "arraysutils.h"
 #include "treeutils.h"
@@ -64,6 +64,7 @@ int main(int argc, char ** argv)
 {
     int i,k,cont=1,elem;
     char op='\0';
+    srand(time(NULL));
     treenodo * nodo;
     nodo= NULL;
     do

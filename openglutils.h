@@ -64,6 +64,11 @@ int bpp(int elem, GLfloat ** aPOS)
     }
 }
 
+GLfloat randG()
+{
+    return (rand()%10+1)/10.0f;
+}
+
 void impg_elem(GLfloat ** arraysPOS)
 {
     int len=10,i,j, elem,bnn;
@@ -88,6 +93,7 @@ void NG_circles(GLfloat ** arraysPOS)
     int len=10,i,j, elem,bnn;
     for(i=0;i<iii;i++) //N_Circles
     {
+        glColor3f(randG(),randG(),randG());
 	if(arraysPOS[0][i]<10)
   	    glucircle(arraysPOS[1][i]+.02,arraysPOS[2][i]+.025,.05);
 	else
